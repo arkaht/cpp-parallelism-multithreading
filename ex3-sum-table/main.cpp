@@ -64,5 +64,5 @@ int main()
 	std::vector<int> list0 { 1, 5, 3, -3, 4, 7, 2, 6, 5 };
 
 	std::cout << "sum: " << sum( list0 ) << std::endl;
-	std::cout << "sum_threaded: " << sum_threaded( list0, 5 ) << std::endl;
+	std::cout << "sum_threaded: " << sum_threaded( list0, 3 ) << std::endl;
 }
