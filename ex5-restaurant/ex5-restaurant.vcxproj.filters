@@ -30,6 +30,9 @@
     <ClCompile Include="actors\chief.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="message_box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="threadsafe_queue.hpp">
@@ -51,6 +54,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macros.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="message_box.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="restaurant.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,12 +2,17 @@
 
 #include "macros.hpp"
 #include "thread_state_machine.hpp"
+#include "restaurant.hpp"
 
 namespace vkr
 {
 	class cooker : public thread_state_machine<cooker>
 	{
 	public:
+		cooker( restaurant& restaurant )
+			: _restaurant( restaurant )
+		{}
+
 		DEFINE_TALK_METHOD( Cooker );
 		
 		void thread_run();
@@ -15,5 +20,7 @@ namespace vkr
 	private:
 		void state_wait();
 		void state_cook();
+
+		restaurant& _restaurant;
 	};
 }

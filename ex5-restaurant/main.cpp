@@ -6,14 +6,17 @@
 #include "actors/waiter.h"
 #include "actors/cooker.h"
 #include "actors/chief.h"
+#include "restaurant.hpp"
 
 int main()
 {
+	vkr::restaurant restaurant {};
+
 	//  init actors
-	vkr::customer customer {};
-	vkr::waiter waiter {};
-	vkr::cooker cooker {};
-	vkr::chief chief {};
+	vkr::customer customer( restaurant );
+	vkr::waiter waiter( restaurant );
+	vkr::cooker cooker( restaurant );
+	vkr::chief chief( restaurant );
 
 	std::cout << "The Restaurant is opening!" << std::endl;
 

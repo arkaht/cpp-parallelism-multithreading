@@ -10,14 +10,14 @@ namespace vkr
 	class threasafe_queue
 	{
 	public:
-		void push( T&& element )
+		void push( const T& element )
 		{
 			std::lock_guard lock( _mutex );
-			_queue.push( std::make_shared( element ) );
+			_queue.push( element );
 			_cond_var.notify_all();
 		}
 
-		std::shared_ptr<T> wait_n_pop()
+		T wait_n_pop()
 		{
 			std::unique_lock<std::mutex> lock( _mutex );
 			_cond_var.wait( lock, [&]() { return !_queue.empty(); } );
@@ -30,7 +30,7 @@ namespace vkr
 
 	private:
 		std::mutex _mutex;
-		std::queue<std::shared_ptr<T>> _queue;
+		std::queue<T> _queue;
 		std::condition_variable _cond_var;
 	};
 }

@@ -140,12 +140,16 @@
     <ClCompile Include="actors\customer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="actors\waiter.cpp" />
+    <ClCompile Include="message_box.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actors\chief.h" />
     <ClInclude Include="actors\cooker.h" />
     <ClInclude Include="actors\customer.h" />
     <ClInclude Include="macros.hpp" />
+    <ClInclude Include="messages.hpp" />
+    <ClInclude Include="message_box.hpp" />
+    <ClInclude Include="restaurant.hpp" />
     <ClInclude Include="threadsafe_queue.hpp" />
     <ClInclude Include="thread_state_machine.hpp" />
     <ClInclude Include="actors\waiter.h" />
