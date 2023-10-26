@@ -6,10 +6,6 @@ class ThreadStateRunner
 {
 public:
 	virtual void thread_run() = 0;
-	std::thread spawn() 
-	{ 
-		return std::thread( &T::thread_run, this );
-	}
 
 protected:
 	void run_loop( T* self )
@@ -84,21 +80,23 @@ private:
 
 int main()
 {
+	//  init actors
 	Customer customer {};
 	Waiter waiter {};
 	Cooker cooker {};
 	Chief chief {};
 
-	std::thread thread_customer = customer.spawn();
-	//std::thread thread_customer( &Customer::thread_run, &customer );
-	//std::thread thread_waiter( &Waiter::thread_run, &waiter );
-	//std::thread thread_cooker( &Cooker::thread_run, &cooker );
-	//std::thread thread_chief( &Chief::thread_run, &chief );
+	std::cout << "The Restaurant is opening!" << std::endl;
 
+	//  init threads
+	std::thread thread_customer( &Customer::thread_run, &customer );
+	std::thread thread_waiter( &Waiter::thread_run, &waiter );
+	std::thread thread_cooker( &Cooker::thread_run, &cooker );
+	std::thread thread_chief( &Chief::thread_run, &chief );
+
+	//  waiting threads
 	thread_customer.join();
-	//thread_waiter.join();
-	//thread_cooker.join();
-	//thread_chief.join();
-
-	std::cout << "Hello World!\n";
+	thread_waiter.join();
+	thread_cooker.join();
+	thread_chief.join();
 }
