@@ -12,7 +12,7 @@ namespace vkr
 	struct meal_chosen_message : public message
 	{
 		customer* customer;
-		std::vector<ingredient> ingredients;
+		recipe recipe;
 	};
 	struct meal_ready_message : public message 
 	{

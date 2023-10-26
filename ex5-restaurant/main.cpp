@@ -10,7 +10,53 @@
 
 int main()
 {
-	vkr::restaurant restaurant {};
+	//  reset random seed
+	//vkr::srand();
+	
+	//  init restaurant
+	vkr::restaurant restaurant(
+		vkr::menu {
+			vkr::recipe {
+				"Steak with mashed carrots and potatoes",
+				std::vector( {
+					vkr::ingredient( "Carrot" ),
+					vkr::ingredient( "Potato" ),
+					vkr::ingredient( "Steak" ),
+				} )
+			},
+			vkr::recipe {
+				"Beef Sirloin with Chips",
+				std::vector( {
+					vkr::ingredient( "Steak" ),
+					vkr::ingredient( "Potato" ),
+				} ),
+			},
+			vkr::recipe {
+				"Cheeseburger",
+				std::vector {
+					vkr::ingredient( "Steak" ),
+					vkr::ingredient( "Bread" ),
+					vkr::ingredient( "Tomato" ),
+					vkr::ingredient( "Salad" ),
+					vkr::ingredient( "Cheese" ),
+				}
+			},
+			vkr::recipe {
+				"Smoked salmon with chive sauce",
+				std::vector {
+					vkr::ingredient( "Salmon" ),
+					vkr::ingredient( "Chive" ),
+					vkr::ingredient( "Bread" ),
+					vkr::ingredient( "Butter" ),
+				}
+			},
+		}
+	);
+
+	/*for ( int i = 0; i < 100; i++ )
+	{
+		std::cout << vkr::rand( 0, 2 ) << vkr::rand( restaurant.get_menu() ).name << std::endl;
+	}*/
 
 	//  init actors
 	vkr::customer customer( restaurant );

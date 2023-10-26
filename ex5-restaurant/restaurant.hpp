@@ -5,11 +5,14 @@
 
 namespace vkr
 {
-	using menu = std::vector<std::vector<ingredient>>;
+	using menu = std::vector<recipe>;
 
 	class restaurant
 	{
 	public:
+		restaurant( const menu& menu )
+			: _menu( menu ) {}
+
 		physical_ingredient create_physical_ingredient( ingredient obj )
 		{
 			auto physical = std::make_shared<ingredient>( obj );
@@ -25,6 +28,12 @@ namespace vkr
 			return physical;
 		}
 
+		void talk( const std::string& text )
+		{
+			std::lock_guard lock( _cout_mutex );
+			std::cout << text;
+		}
+
 		const menu& get_menu() { return _menu; }
 
 		message_box& get_waiters_box() { return _waiters_box; }
@@ -32,6 +41,8 @@ namespace vkr
 		message_box& get_chiefs_box() { return _chiefs_box; }
 
 	private:
+		std::mutex _cout_mutex;
+
 		std::vector<physical_ingredient> physical_ingredients;
 		std::vector<physical_meal> physical_meals;
 

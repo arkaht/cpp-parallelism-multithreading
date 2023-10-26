@@ -1,6 +1,6 @@
 #pragma once
 
-#include "macros.hpp"
+#include "utils.hpp"
 #include "thread_state_machine.hpp"
 #include "restaurant.hpp"
 
@@ -27,7 +27,7 @@ namespace vkr
 		struct 
 		{
 			customer* customer;
-			std::vector<ingredient> recipe;
+			recipe recipe;
 			physical_meal meal;
 			physical_ingredient ingredient;
 		} _mix_data;

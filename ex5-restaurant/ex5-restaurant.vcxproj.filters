@@ -53,7 +53,7 @@
     <ClInclude Include="actors\chief.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macros.hpp">
+    <ClInclude Include="utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="message_box.hpp">
@@ -66,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="meal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="random.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

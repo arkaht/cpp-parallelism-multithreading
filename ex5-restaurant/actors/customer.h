@@ -1,6 +1,6 @@
 #pragma once
 
-#include "macros.hpp"
+#include "utils.hpp"
 #include "thread_state_machine.hpp"
 #include "restaurant.hpp"
 
@@ -24,6 +24,12 @@ namespace vkr
 		void state_wait();
 		void state_eat();
 		void state_exit();
+
+		//  states data
+		struct 
+		{
+			physical_meal meal;
+		} _eat_data;
 
 		restaurant& _restaurant;
 	};

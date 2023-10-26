@@ -18,8 +18,7 @@ void chief::state_wait()
 		{
 			_mix_data.meal = _restaurant.create_physical_meal( meal() );
 			_mix_data.customer = msg.customer;
-			_mix_data.recipe = std::move( msg.ingredients );
-			talk( "received an order, dispatching ingredients to cookers" );
+			_mix_data.recipe = msg.recipe;
 
 			dispatch_ingredients();
 		}
@@ -50,11 +49,11 @@ void chief::state_mix()
 	talk( 
 		"mixed " + ingredient->get_name() + " (" 
 		+ std::to_string( meal->get_ingredients_count() ) + "/" 
-		+ std::to_string( (int)_mix_data.recipe.size() ) + ")"
+		+ std::to_string( (int)_mix_data.recipe.ingredients.size() ) + ")"
 	);
 
 	//  is meal finally prepared?
-	if ( meal->get_ingredients_count() == _mix_data.recipe.size() )
+	if ( meal->get_ingredients_count() == _mix_data.recipe.ingredients.size() )
 	{
 		//  prepare order
 		meal_ready_message msg {};
@@ -73,8 +72,10 @@ void chief::state_mix()
 
 void chief::dispatch_ingredients()
 {
+	talk( "is dispatching ingredients to cookers for: " + _mix_data.recipe.name );
+	
 	auto& box = _restaurant.get_cookers_box();
-	for ( auto& ingredient : _mix_data.recipe )
+	for ( auto& ingredient : _mix_data.recipe.ingredients )
 	{
 		talk( "orders cookers to cook " + ingredient.get_name() );
 		
