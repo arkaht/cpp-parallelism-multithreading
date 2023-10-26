@@ -4,7 +4,7 @@ using namespace vkr;
 
 void cooker::thread_run()
 {
-	state = &cooker::state_wait;
+	_state = &cooker::state_wait;
 	run_loop( this );
 }
 

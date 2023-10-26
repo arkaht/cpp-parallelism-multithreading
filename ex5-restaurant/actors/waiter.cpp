@@ -4,7 +4,7 @@ using namespace vkr;
 
 void waiter::thread_run()
 {
-	state = &waiter::state_wait;
+	_state = &waiter::state_wait;
 	run_loop( this );
 }
 

@@ -5,7 +5,7 @@ using namespace vkr;
 void chief::thread_run()
 
 {
-	state = &chief::state_wait;
+	_state = &chief::state_wait;
 	run_loop( this );
 }
 

@@ -21,7 +21,7 @@ namespace vkr
 				run_state( self ); 
 			}
 		}
-		void run_state( T* self ) { (self->*state)(); }
-		void (T::*state)();
+		void run_state( T* self ) { (self->*_state)(); }
+		void (T::*_state)();
 	};
 }
