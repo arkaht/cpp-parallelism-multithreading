@@ -21,9 +21,18 @@ namespace vkr
 		void state_wait();
 		void state_mix();
 
-		restaurant& _restaurant;
+		void dispatch_ingredients();
 
-		customer* _meal_customer;
+		//  states data
+		struct 
+		{
+			customer* customer;
+			std::vector<ingredient> recipe;
+			physical_meal meal;
+			physical_ingredient ingredient;
+		} _mix_data;
+
+		restaurant& _restaurant;
 	};
 
 }

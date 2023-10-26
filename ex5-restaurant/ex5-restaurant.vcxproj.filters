@@ -65,5 +65,8 @@
     <ClInclude Include="restaurant.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="meal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

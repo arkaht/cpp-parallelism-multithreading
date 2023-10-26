@@ -1,6 +1,9 @@
 #pragma once
 
+#include <vector>
+
 #include "message_box.hpp"
+#include "meal.hpp"
 
 namespace vkr
 {
@@ -9,19 +12,20 @@ namespace vkr
 	struct meal_chosen_message : public message
 	{
 		customer* customer;
-		//  std::array<ingredient, 3> ingredients;
+		std::vector<ingredient> ingredients;
 	};
 	struct meal_ready_message : public message 
 	{
 		customer* customer;
+		physical_meal meal;
 	};
 
 	struct ingredient_chosen_message : public message
 	{
-		//  ingredient ingredient;
+		physical_ingredient ingredient;
 	};
 	struct ingredient_cooked_message : public message
 	{
-		//  ingredient ingredient;
+		physical_ingredient ingredient;
 	};
 };

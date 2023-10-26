@@ -147,6 +147,7 @@
     <ClInclude Include="actors\cooker.h" />
     <ClInclude Include="actors\customer.h" />
     <ClInclude Include="macros.hpp" />
+    <ClInclude Include="meal.hpp" />
     <ClInclude Include="messages.hpp" />
     <ClInclude Include="message_box.hpp" />
     <ClInclude Include="restaurant.hpp" />

@@ -17,6 +17,11 @@ void customer::state_order()
 	//  prepare order
 	meal_chosen_message order {};
 	order.customer = this;
+	order.ingredients = std::vector( {
+		ingredient( "Carrot" ),
+		ingredient( "Potato" ),
+		ingredient( "Steak" ),
+	} );
 
 	//  send order
 	_restaurant.get_waiters_box().send( order );

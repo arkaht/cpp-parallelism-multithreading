@@ -21,6 +21,12 @@ namespace vkr
 		void state_wait();
 		void state_cook();
 
+		//  states data
+		struct 
+		{
+			physical_ingredient ingredient;
+		} _cook_data;
+
 		restaurant& _restaurant;
 	};
 }

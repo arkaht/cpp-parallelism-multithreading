@@ -15,6 +15,7 @@ void cooker::state_wait()
 	incoming->handle<ingredient_chosen_message>( 
 		[&]( auto msg )
 		{
+			_cook_data.ingredient = msg.ingredient;
 			talk( "received an order" );
 
 			//  transit to cook state
@@ -25,14 +26,18 @@ void cooker::state_wait()
 
 void cooker::state_cook() 
 {
-	talk( "is cooking" );
+	auto& ingredient = _cook_data.ingredient;
 
+	talk( "is cooking.." );
+
+	//  work
 	sleep_ms( 500 );
-
-	talk( "cooked an ingredient" );
+	ingredient->cook();
+	talk( "cooked " + ingredient->get_name() );
 
 	//  send work to chiefs
 	ingredient_cooked_message msg {};
+	msg.ingredient = ingredient;
 	_restaurant.get_chiefs_box().send( msg );
 
 	//  transit to wait
