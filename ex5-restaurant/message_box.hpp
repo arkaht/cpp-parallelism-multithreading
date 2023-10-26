@@ -16,11 +16,20 @@ namespace vkr
 		template <typename T>
 		void handle( std::function<void( const T& )> callback )
 		{
+			//  avoid multiple handles
+			if ( _is_handled ) return;
+
+			//  cast to derived
 			auto msg = std::dynamic_pointer_cast<T>( shared_from_this() );
 			if ( !msg ) return;
 
+			//  callback and mark as handled
 			callback( *msg.get() );
+			_is_handled = true;
 		}
+
+	private:
+		bool _is_handled = false;
 	};
 
 	/*
