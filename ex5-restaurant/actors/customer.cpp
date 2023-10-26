@@ -4,7 +4,7 @@ using namespace vkr;
 
 void customer::thread_run()
 {
-	talk( "I'm taking a seat." );
+	talk( "is taking a seat" );
 	_state = &customer::state_order;
 
 	run_loop( this );
@@ -20,7 +20,7 @@ void customer::state_order()
 
 	//  send order
 	_restaurant.get_waiters_box().send( order );
-	talk( "I have chosen my meal!" );
+	talk( "chose his meal" );
 
 	//  transit to wait state
 	_state = &customer::state_wait;
@@ -28,25 +28,27 @@ void customer::state_order()
 
 void customer::state_wait() 
 {
-	auto msg = _message_box.read();
+	auto incoming = _message_box.read();
 	
 	//  wait for meal
-	if ( auto data = std::dynamic_pointer_cast<meal_served_message>( msg ) )
-	{
-		talk( "I have received my meal.." );
+	incoming->handle<meal_ready_message>(
+		[&]( auto msg )
+		{
+			talk( "received his meal" );
 
-		//  transit to eat state
-		_state = &customer::state_eat;
-	}
+			//  transit to eat state
+			_state = &customer::state_eat;
+		}
+	);
 }
 
 void customer::state_eat() 
 {
-	talk( "let's eat!" );
+	talk( "is eating" );
 
 	sleep_ms( 1500 );
 
-	talk( "I have finished my meal, I leave now." );
+	talk( "finished his meal" );
 
 	//  transit to exit state
 	_state = &customer::state_exit;
@@ -54,7 +56,7 @@ void customer::state_eat()
 
 void customer::state_exit() 
 {
-	talk( "I have left the restaurant" );
+	talk( "left the restaurant" );
 	
 	//  stop thread
 	_is_running = false;

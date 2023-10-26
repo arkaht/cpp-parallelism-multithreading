@@ -11,6 +11,17 @@ namespace vkr
 		customer* customer;
 		//  std::array<ingredient, 3> ingredients;
 	};
-	struct meal_served_message : public message {};
-	struct meal_ready_message : public message {};
+	struct meal_ready_message : public message 
+	{
+		customer* customer;
+	};
+
+	struct ingredient_chosen_message : public message
+	{
+		//  ingredient ingredient;
+	};
+	struct ingredient_cooked_message : public message
+	{
+		//  ingredient ingredient;
+	};
 };

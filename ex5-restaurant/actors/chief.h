@@ -22,6 +22,8 @@ namespace vkr
 		void state_mix();
 
 		restaurant& _restaurant;
+
+		customer* _meal_customer;
 	};
 
 }

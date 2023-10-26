@@ -14,17 +14,29 @@ void waiter::state_wait()
 {
 	auto incoming = _restaurant.get_waiters_box().read();
 
+	//  called when a customer has chosen his meal
 	incoming->handle<meal_chosen_message>( 
 		[&]( auto msg ) {
-			talk( "Ordering a meal for customer.." );
+			talk( "is passing the order of a customer to kitchens" );
 
-			sleep_ms( 1000 );
-
-			auto& box = msg.customer->get_message_box();
-			box.send( meal_served_message() );
-
-			talk( "Served the customer's meal" );
+			//  gives the order to kitchens
+			auto& box = _restaurant.get_chiefs_box();
+			box.send( msg );
 		} 
+	);
+
+	//  called when kitchens have finished to prepare the meal
+	incoming->handle<meal_ready_message>(
+		[&]( auto msg )
+		{
+			talk( "is delivering a meal to a customer" );
+			sleep_ms( 500 );
+
+			//  serving meal
+			auto& box = msg.customer->get_message_box();
+			box.send( msg );
+			talk( "has served the customer's meal" );
+		}
 	);
 }
 
